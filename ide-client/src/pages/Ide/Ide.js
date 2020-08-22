@@ -4,7 +4,9 @@ import axios from 'axios'
 import secret from '../../secrets/secret'
 import MonacoEditor from 'react-monaco-editor';
 import {code} from './defaultCode'
-
+import Ques from './Quessection';
+import { Segment } from 'semantic-ui-react'
+import { Form, TextArea } from 'semantic-ui-react'
 export default class Ide extends Component {
     state={
         code: code.cpp,
@@ -78,8 +80,12 @@ export default class Ide extends Component {
         console.log(this.state)
         return (
             <>
+
                 <div className="container">
-                    <div className="row">
+                <Segment>
+                    <Ques/>
+                    </Segment>
+                    <Segment>
                         <div className="col-12 mt-5">
                         <select id="lang" onChange={(e) => this.onLangSelectHandler(e)}>
                             <option value="cpp">C++</option>
@@ -87,13 +93,13 @@ export default class Ide extends Component {
                             <option value="java">Java</option>
                             <option value="python">Python</option>
                         </select>
-                             <p className="lead d-block my-0">Code your code here</p>
+                             <p className="lead d-block my-0">Build your code here</p>
                              <div type="text" id="code">
                              <MonacoEditor
-                                width="800"
+                                
                                 height="700"
                                 language={this.state.lang}
-                                theme="vs-dark"
+                                
                                 value={this.state.code}
                                 options={options}
                                 onChange={this.onCodeChangeHandler}
@@ -101,20 +107,31 @@ export default class Ide extends Component {
                             />
                              </div>
                         </div>
-                        <div className="col-12 mt-3">
+                        </Segment>
+                    {/* <div className="row" > */}
+                   
+                        <Segment>
+                   
+                        {/* <div className="col-12 mt-3"> */}
                             <p className="lead d-block my-0">Provide Input</p>
-                             <textarea type="text" id="input" value={this.state.input} onChange={this.onInputChangeHandler}>
-                             </textarea>
-                        </div>
-                    </div>
+                             <TextArea type="text" id="input" value={this.state.input} onChange={this.onInputChangeHandler}>
+                             </TextArea>
+                        {/* </div> */}
+                        </Segment>
+                    {/* </div> */}
+                    
+                    <Segment>
+                    <button className="btn btn-success" onClick={this.onSubmitHandler}>Compile Code</button>
                     <button className="btn btn-success" onClick={this.onSubmitHandler}>Submit Code</button>
                     <div className="row">
                         <div className="col-12 my-5">
-                             <textarea type="text" id="result" value={this.state.result} disabled={true}>
-                             </textarea>
+                             <TextArea type="text" id="result" value={this.state.result} disabled={true}>
+                             </TextArea>
                         </div>
                     </div>
+                    </Segment>
                 </div>
+               
             </>
         )
     }
