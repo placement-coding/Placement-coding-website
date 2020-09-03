@@ -15,7 +15,8 @@ connectDB();
 
 // IMPORTING ALL THE FILES
 const code = require('./api/code/code')
-// app.use('/api/code',code)
+
+ app.use('/',code);
 
 
 
@@ -25,15 +26,18 @@ app.listen(port, ()=>{
     console.log(`Server started at port ${port}`)
 })
 
-app.get('/array/q1',(req,res) => {
+// app.post("/submit",(req,res)=>{
+//   console.log(req.body);
+// })
+// app.get('/array/q1',(req,res) => {
 
-    console.log("hi");
-    Question.find({}, function(err, ques) {
+//     console.log("hi");
+//     Question.find({}, function(err, ques) {
         
-      res.json(ques);  
-      console.log(ques);
-    });
-  });
+//       res.json(ques);  
+//       console.log(ques);
+//     });
+//   });
   
   
 if (process.env.NODE_ENV === 'production') {

@@ -16,8 +16,9 @@ export default class Ide extends Component {
 
     onSubmitHandler = (e) => {
         e.preventDefault()
-        alert("submit code")
-        axios.post(`${secret.url}code/submit`,this.state)
+        ///alert("submit code")
+        console.log(this.state.code);
+        axios.post("/submit",this.state)
             .then(res=>{
                 console.log(res.data)
                 const data = res.data
@@ -121,7 +122,7 @@ export default class Ide extends Component {
                     {/* </div> */}
                     
                     <Segment>
-                    <button className="btn btn-success" onClick={this.onSubmitHandler}>Compile Code</button>
+                    {/* <button className="btn btn-success" onClick={this.onSubmitHandler}>Compile Code</button> */}
                     <button className="btn btn-success" onClick={this.onSubmitHandler}>Submit Code</button>
                     <div className="row">
                         <div className="col-12 my-5">
